@@ -1,0 +1,67 @@
+@mixin float($dir: 'left') {
+    float: $dir;
+    display: inline;
+}
+
+@mixin outdent($selector, $amount, $dir: 'left', $with-padding: true) {
+    @if $with-padding {
+        padding-#{$dir}: $amount;
+    }
+    #{$selector} {
+        @include float($dir);
+        @if $dir == 'left' {
+            margin-left: -$amount;
+        } @else {
+            margin-right: -$amount;
+        }
+    }
+}
+
+@mixin align($dir: 'left', $v: $line, $h: $grid-margin, $mirror: false) {
+    @include float('left');
+    margin-top: $v;
+    margin-bottom: $v;
+    @if $dir == 'right' || $mirror {
+        margin-left: $h;
+    } @else {
+        margin-left: 0;
+    }
+    @if $dir == 'left' || $mirror {
+        margin-right: $h;
+    } @else {
+        margin-right: 0;
+    }
+}
+
+@mixin clearfix {
+    zoom: 1;
+    &:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+}
+.clearfix {
+    @include clearfix;
+}
+
+@mixin outset-left($gutter: $grid-margin, $with-padding) {
+    margin-left: -$gutter;
+    @if $with-padding {
+        padding-left: $gutter;
+    }
+}
+@mixin outset-right($gutter: $grid-margin, $with-padding) {
+    margin-right: -$gutter;
+    @if $with-padding {
+        padding-right: $gutter;
+    }
+}
+@mixin outset($gutter: $grid-margin, $with-padding: true) {
+    @include outset-left($gutter, $with-padding);
+    @include outset-right($gutter, $with-padding);
+}
+

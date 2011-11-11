@@ -1,0 +1,47 @@
+@mixin list-no-bullets {
+    list-style-type: none;
+    list-style-image: none;
+}
+
+@mixin list-plain {
+    @include list-no-bullets;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin list-inline {
+    @include list-plain;
+    display: inline;
+    li {
+        display: inline;
+    }
+}
+
+@mixin list-horizontal($margin: $grid-margin, $dir: 'left') {
+    @include list-plain;
+    @include clearfix;
+    li {
+        float: left;
+        display: inline;
+        margin-#{$dir}: $margin;
+    }
+}
+
+@mixin list-dl-table($width, $margin: $grid-margin) {
+    padding-left: $width + $margin;
+    dt {
+        float: left;
+        clear: left;
+        display: inline;
+        width: $width;
+        margin-right: $margin;
+        margin-left: -$width - $margin;
+    }
+}
+
+@mixin list-image-bullets($img, $padding: $grid-margin, $x: 0, $y: 0) {
+    @include list-no-bullets;
+    li {
+        @include text-icon($img, $padding, $x, $y);
+    }
+}

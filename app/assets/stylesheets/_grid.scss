@@ -1,0 +1,51 @@
+$grid-column-width: 40px !default;
+$grid-margin:       20px !default;
+$grid-column:       $grid-column-width + $grid-margin;
+
+@function span($n) {
+    @return $n * $grid-column-width + ($n - 1) * $grid-margin;
+}
+@function columns($n) {
+    @return $grid-column * $n;
+}
+
+@mixin column($span, $with_margin: true) {
+    @include float;
+    width: span($span);
+    @if $with_margin {
+        margin-right: $grid-margin;
+    }
+}
+
+@mixin rcolumn-container {
+    position: relative;
+    margin-left: -$grid-margin;
+}
+
+@mixin rcolumn($span) {
+    @include column($span, false);
+    margin-left: $grid-margin;
+}
+
+@mixin prepend($span) {
+    padding-left: span($span);
+}
+
+@mixin append($span) {
+    padding-right: span($span);
+}
+
+@mixin push($span) {
+    margin {
+        left: columns($span);
+        right: columns(-$span);
+    }
+}
+
+@mixin pull($span, $last: true) {
+    @if $last {
+        margin-left: columns(-$span) + $grid-margin;
+    } @else {
+        margin-left: columns(-$span);
+    }
+}

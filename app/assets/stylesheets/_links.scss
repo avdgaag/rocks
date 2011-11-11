@@ -1,0 +1,52 @@
+@mixin link-hover {
+    text-decoration: none;
+    &:hover, &:focus {
+        text-decoration: underline;
+    }
+}
+
+@mixin link-colors($link, $visited, $hover, $active) {
+    color: $link;
+    &:visited {
+        color: $visited;
+    }
+    &:hover, &:focus {
+        color: $hover;
+    }
+    &:active {
+        color: $active;
+    }
+}
+
+@mixin link-colors-lighten($color) {
+    @include link-colors(
+        $color,
+        desaturate($color, 30%),
+        lighten($color, 10%),
+        lighten($color, 20%)
+    );
+}
+
+@mixin link-press {
+    &:active {
+        position: relative;
+        top: 1px;
+        left: 1px;
+    }
+}
+
+@mixin link-unstyled($color: $color-text) {
+    @include link-colors($color, $color, $color, $color);
+    &:link, &:visited, &:hover, &:focus, &:active {
+        text-decoration: none;
+    }
+}
+
+@mixin link-block($target: .target) {
+    @include link-unstyled;
+    display: block;
+    #{$target} {
+        @extend .block-link-target;
+    }
+}
+

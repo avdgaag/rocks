@@ -1,0 +1,36 @@
+$line:       20px !default;
+$size-text:  14px !default;
+$color-text: #444 !default;
+
+@function lines($n) {
+    @return $line * $n;
+}
+
+@mixin text-icon($img, $padding: $grid-margin, $x: 0, $y: 0) {
+    padding-left: $padding;
+    background: {
+        image: url($img);
+        repeat: no-repeat;
+        position: $x $y;
+    }
+}
+
+@mixin text-replace($img, $x: 0, $y: 0, $w: false, $h: false) {
+    overflow: hidden;
+    text {
+        direction: rtl;
+        align: left;
+        indent: -999em;
+    }
+    background: {
+        image: url($img);
+        repeat: no-repeat;
+        position: $x $y;
+    }
+    @if $w {
+        width: $w;
+    }
+    @if $h {
+        height: $h;
+    }
+}
