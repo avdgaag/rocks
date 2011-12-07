@@ -45,7 +45,8 @@ The difference between `span` and `columns` is inclusion of `$grid-margin` at th
 It contains the following mixins:
 
 * `column($span, $with_margin: true)`: make an element a column, spanning `$span` number of columns.
-* `rcolumn-container`: container for `rcolumn` elements. Contains negative left margin, that counters the left margin of the first `rcolumn` it contains.
+* `container`: container for `column` elements. Simply a relatively positioned wrapped with clearfix applied.
+* `rcontainer`: container for `rcolumn` elements. Contains negative left margin, that counters the left margin of the first `rcolumn` it contains.
 * `rcolumn($span)`: same as `column` but with margin applied to the left, so you don't need to remove margin from the last column in a group.
 * `prepend($span)`: pad an element with `$span` columns to the left.
 * `append($span)`: pad an element with `$span` columns to the right.

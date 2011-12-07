@@ -17,8 +17,13 @@ $grid-column:       $grid-column-width + $grid-margin;
     }
 }
 
-@mixin rcolumn-container {
+@mixin container {
+    @include clearfix;
     position: relative;
+}
+
+@mixin rcontainer {
+    @include container;
     margin-left: -$grid-margin;
 }
 
