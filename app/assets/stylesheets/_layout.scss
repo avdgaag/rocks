@@ -65,3 +65,44 @@
     @include outset-right($gutter, $with-padding);
 }
 
+@mixin leading($amount: $line) {
+    @if unitless($amount) {
+        margin-top: lines($amount);
+    } @else {
+        margin-top: $amount;
+    }
+}
+
+@mixin trailing($amount: $line) {
+    @if unitless($amount) {
+        margin-bottom: lines($amount);
+    } @else {
+        margin-bottom: $amount;
+    }
+}
+
+@mixin surrounding-lines {
+    @include leading;
+    @include trailing;
+}
+
+@mixin voutset-top($amount, $border: 0) {
+    @if unitless($amount) {
+        $amount = lines($amount);
+    }
+    margin-top: -$amount;
+    padding-top: $amount - $border;
+}
+
+@mixin voutset-bottom($amount, $border: 0) {
+    @if unitless($amount) {
+        $amount = lines($amount);
+    }
+    margin-bottom: -$amount;
+    padding-bottom: $amount - $border;
+}
+
+@mixin voutset($amount, $border: 0) {
+    @include voutset-top($amount, $border);
+    @include voutset-bottom($amount, $border);
+}

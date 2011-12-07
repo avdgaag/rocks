@@ -64,6 +64,16 @@ Contains simple layout helper mixins:
 * `outset-left($gutter: $grid-margin, $with-padding)`: create an outdent to the left, using a negative margin and opposing padding.
 * `outset-right($gutter: $grid-margin, $with-padding)`: create an outdent to the right, using a negative margin and opposing padding.
 * `outset($gutter: $grid-marign, $with-padding: true)`: outdent to both the left and right.
+* `leading($amount: $line)`: add whitespace before an element.
+* `trailing($amount: $line)`: add whitespace after an element.
+* `surrounding-lines`: adds a single line-height whitespace before and after the element.
+* `voutset-top($amount, $border: 0)`: vertically outset an element, adding negative margin and positive padding to the top.
+* `voutset-bottom($amount, $border: 0)`: vertically outset an element, adding negative margin and positive padding to the bottom.
+* `voutset($amount, $border: 0)`: vertically outset an element by applying negative marings and countering paddings top top and bottom.
+
+All of `leading`, `trailing`, `voutset-top` and `voutset-bottom` can take both pixel values as arguments, or a unit-less number. When given a unit-less number, it will be fed to the `lines` function.
+
+When using any of the `voutset` mixins, you can add an optional `$border` argument to reduce the amount of padding that is applied, leaving room for a border on element while preserving vertical rhythm.
 
 It also contains a plain class `.clearfix` that you can use in your HTML. It is meant, however, to be used with `@extend`. When your stylesheet needs a lot of clearfixes, the end result will contain _a lot_ of duplicated code. Using `@extend .clearfix` you can define the class once, and simply apply many selectors to it.
 
