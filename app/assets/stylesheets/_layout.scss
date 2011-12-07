@@ -34,6 +34,10 @@
 }
 
 @mixin clearfix {
+    @extend .clearfix;
+}
+
+.clearfix {
     zoom: 1;
     &:after {
         visibility: hidden;
@@ -44,9 +48,6 @@
         height: 0;
     }
 }
-.clearfix {
-    @include clearfix;
-}
 
 @mixin outset-left($gutter: $grid-margin, $with-padding) {
     margin-left: -$gutter;
@@ -54,12 +55,14 @@
         padding-left: $gutter;
     }
 }
+
 @mixin outset-right($gutter: $grid-margin, $with-padding) {
     margin-right: -$gutter;
     @if $with-padding {
         padding-right: $gutter;
     }
 }
+
 @mixin outset($gutter: $grid-margin, $with-padding: true) {
     @include outset-left($gutter, $with-padding);
     @include outset-right($gutter, $with-padding);
