@@ -9,12 +9,12 @@ Gem::Specification.new do |s|
   s.email             = ['arjan@arjanvandergaag.nl']
   s.homepage          = 'https://github.com/avdgaag/rocks'
   s.summary           = 'Sass mixins using SCSS syntax that go one step further than Bourbon'
-  s.description       = <<<-DESC
+  s.description       = <<-DESC
 Rocks provides a set of mixins and default styles that you can use to develop
 maintainable, readable stylesheets. It is designed to be used together with
 Toughtbot's Bourbon, but unlike bourbon, Rocks provides actual styles, not just
 tools to make styling easier. They do aim to separate function from form.
-  DESC
+DESC
   s.rubyforge_project = 'rocks'
   s.files             = `git ls-files`.split("\n")
   s.test_files        = `git ls-files -- {test,spec,features}/*`.split("\n")
