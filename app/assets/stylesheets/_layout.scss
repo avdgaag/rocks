@@ -1,6 +1,6 @@
 // Consistent floats: float to the left and use `display: inline` to make it
 // more likely to work correctly in IE.
-@mixin float($dir: 'left') {
+@mixin float($dir: left) {
     float: $dir;
     display: inline;
 }
@@ -17,13 +17,13 @@
 // $amount is the width to outdent
 // $dir is the direction of the outdent, defaulting to left
 // $with-padding controls whether the same $amount of padding is applied
-@mixin outdent($selector, $amount, $dir: 'left', $with-padding: true) {
+@mixin outdent($selector, $amount, $dir: left, $with-padding: true) {
     @if $with-padding {
         padding-#{$dir}: $amount;
     }
     #{$selector} {
         @include float($dir);
-        @if $dir == 'left' {
+        @if $dir == left {
             margin-left: -$amount;
         } @else {
             margin-right: -$amount;

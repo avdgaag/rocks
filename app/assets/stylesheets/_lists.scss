@@ -25,7 +25,7 @@
 //
 // $margin controls the amount of whitespace between items
 // $dir controls the floating direction.
-@mixin list-horizontal($margin: $grid-margin, $dir: 'left') {
+@mixin list-horizontal($margin: $grid-margin, $dir: left) {
     @include list-plain;
     @include clearfix;
     li {
