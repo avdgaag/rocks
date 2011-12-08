@@ -57,8 +57,10 @@
 @mixin link-block($target: '.target') {
     @include link-unstyled;
     display: block;
-    #{$target} {
-        @extend .block-link-target;
+    @if $target {
+        #{$target} {
+            @extend .block-link-target;
+        }
     }
 }
 
