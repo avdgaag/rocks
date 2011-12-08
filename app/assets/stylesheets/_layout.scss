@@ -69,17 +69,17 @@
 }
 
 // Apply negative margin and equal, opposing padding, to the left of an element.
-@mixin outset-left($gutter: $grid-margin, $with-padding) {
+@mixin outset-left($gutter: $grid-margin, $with-padding: false) {
     margin-left: -$gutter;
-    @if $with-padding {
+    @if $with-padding == true {
         padding-left: $gutter;
     }
 }
 
 // Apply negative margin and equal, opposing padding, to the right of an element.
-@mixin outset-right($gutter: $grid-margin, $with-padding) {
+@mixin outset-right($gutter: $grid-margin, $with-padding: false) {
     margin-right: -$gutter;
-    @if $with-padding {
+    @if $with-padding == true {
         padding-right: $gutter;
     }
 }
