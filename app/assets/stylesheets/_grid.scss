@@ -2,10 +2,10 @@
 $grid-column-width: 40px !default;
 
 // The amount of margin between two adjacent columns
-$grid-margin:       20px !default;
+$grid-margin: 20px !default;
 
 // Helper variable that combines column width and margin.
-$grid-column:       $grid-column-width + $grid-margin;
+$grid-column: $grid-column-width + $grid-margin;
 
 // Calculate the width of a container spanning $n number of columns.
 @function span($n) {
