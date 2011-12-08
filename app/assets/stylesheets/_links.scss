@@ -31,6 +31,15 @@
     );
 }
 
+@mixin link-colors-darken($color) {
+    @include link-colors(
+        $color,
+        desaturate($color, 30%),
+        darken($color, 10%),
+        darken($color, 20%)
+    );
+}
+
 // Make a link appear pressable by offsetting it one pixel in the active state.
 // Note: this only works whe the element is not absolutely positioned.
 @mixin link-press {
