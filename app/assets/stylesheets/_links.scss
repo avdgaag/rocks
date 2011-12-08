@@ -54,7 +54,7 @@
 // links. Instead, you are expected to provide a class `.block-link-target`
 // whose styles will be applied to style the child element that should behave
 // and look like a link.
-@mixin link-block($target: .target) {
+@mixin link-block($target: '.target') {
     @include link-unstyled;
     display: block;
     #{$target} {

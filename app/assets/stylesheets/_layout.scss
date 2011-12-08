@@ -39,12 +39,12 @@
     @include float('left');
     margin-top: $v;
     margin-bottom: $v;
-    @if $dir == 'right' || $mirror {
+    @if $dir == 'right' or $mirror {
         margin-left: $h;
     } @else {
         margin-left: 0;
     }
-    @if $dir == 'left' || $mirror {
+    @if $dir == 'left' or $mirror {
         margin-right: $h;
     } @else {
         margin-right: 0;
@@ -124,7 +124,7 @@
 // room for a border.
 @mixin voutset-top($amount, $border: 0) {
     @if unitless($amount) {
-        $amount = lines($amount);
+        $amount: lines($amount);
     }
     margin-top: -$amount;
     padding-top: $amount - $border;
@@ -135,7 +135,7 @@
 // allow room for a border.
 @mixin voutset-bottom($amount, $border: 0) {
     @if unitless($amount) {
-        $amount = lines($amount);
+        $amount: lines($amount);
     }
     margin-bottom: -$amount;
     padding-bottom: $amount - $border;
