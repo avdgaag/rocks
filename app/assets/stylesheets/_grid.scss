@@ -67,7 +67,7 @@ $grid-column: $grid-column-width + $grid-margin;
 
 // Apply a number of columns as padding to the left of a `column` element.
 @mixin prepend($span) {
-    padding-left: span($span);
+    padding-left: columns($span);
 }
 
 // Apply a number of columns as padding to the right of a `column` element.
