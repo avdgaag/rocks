@@ -120,6 +120,10 @@ It defines the following mixins:
 * `text-icon($img, $padding: $grid-margin, $x: 0, $y:0)`: give an element an icon by setting an image to the background and applying some padding.
 * `text-replace($img, $x: 0, $y: 0, $w: false, $h: false)`: replace an element's text with an image by setting it to the background. You can optionally specify width, height and background positioning.
 
+# History
+
+See CHANGELOG.md for a full of changes.
+
 # Credits
 
 **Author**: Arjan van der Gaag
