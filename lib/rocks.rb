@@ -1,4 +1,4 @@
-require "rocks/version"
+require 'rocks/version'
 
 module Rocks
   if defined? Rails
