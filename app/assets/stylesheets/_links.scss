@@ -1,3 +1,4 @@
+// Hide the underlines from a link, except when hovering or focusing on it.
 @mixin link-hover {
     text-decoration: none;
     &:hover, &:focus {
@@ -5,6 +6,7 @@
     }
 }
 
+// Shortcut to assign colors to all link states.
 @mixin link-colors($link, $visited, $hover, $active) {
     color: $link;
     &:visited {
@@ -18,6 +20,8 @@
     }
 }
 
+// Shortcut to use a base color for all link state colors, lightening the
+// hover, focus and active states and desaturating the visited state.
 @mixin link-colors-lighten($color) {
     @include link-colors(
         $color,
@@ -27,6 +31,8 @@
     );
 }
 
+// Make a link appear pressable by offsetting it one pixel in the active state.
+// Note: this only works whe the element is not absolutely positioned.
 @mixin link-press {
     &:active {
         position: relative;
@@ -35,6 +41,7 @@
     }
 }
 
+// Remove default styles from links, making it appear as normal text.
 @mixin link-unstyled($color: $color-text) {
     @include link-colors($color, $color, $color, $color);
     &:link, &:visited, &:hover, &:focus, &:active {
@@ -42,6 +49,11 @@
     }
 }
 
+// Link block pattern. Useful when a link contains several block elements.
+// This makes all the containing elements clickable, but does not style them as
+// links. Instead, you are expected to provide a class `.block-link-target`
+// whose styles will be applied to style the child element that should behave
+// and look like a link.
 @mixin link-block($target: .target) {
     @include link-unstyled;
     display: block;

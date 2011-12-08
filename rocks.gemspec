@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 Rocks provides a set of mixins and default styles that you can use to develop
 maintainable, readable stylesheets. It is designed to be used together with
 Toughtbot's Bourbon, but unlike bourbon, Rocks provides actual styles, not just
-tools to make styling easier.
+tools to make styling easier. They do aim to separate function from form.
   DESC
   s.rubyforge_project = 'rocks'
   s.files             = `git ls-files`.split("\n")

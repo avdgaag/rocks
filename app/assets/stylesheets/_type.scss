@@ -1,11 +1,24 @@
+// The default line-height and vertical whitespace between consecutive
+// elements.
 $line:       20px !default;
+
+// Default text size.
 $size-text:  14px !default;
+
+// Default text color.
 $color-text: #444 !default;
 
+// Calculate the height of an number of lines.
 @function lines($n) {
     @return $line * $n;
 }
 
+// Use a background image to give an element an icon.
+//
+// $img is the image source.
+// $padding is the amount the element is indented. Defaults to $grid-margin
+// $x and $x control the positioning of the background image, for spriting
+// purposes.
 @mixin text-icon($img, $padding: $grid-margin, $x: 0, $y: 0) {
     padding-left: $padding;
     background: {
@@ -15,6 +28,16 @@ $color-text: #444 !default;
     }
 }
 
+// Replace text by an image.
+//
+// Hide the using negative text indent, and apply a background image
+// so the text appears to be replaced by an image.
+//
+// $img is the image source
+// $x and $x control the backgrounding position of the image, for spriting
+// purposes.
+// $w and $h allow you to set explicit dimensions on the element, to mask the
+// background image.
 @mixin text-replace($img, $x: 0, $y: 0, $w: false, $h: false) {
     overflow: hidden;
     text {

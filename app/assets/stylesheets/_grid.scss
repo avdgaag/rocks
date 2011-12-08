@@ -1,14 +1,33 @@
+// The width of a single column container
 $grid-column-width: 40px !default;
+
+// The amount of margin between two adjacent columns
 $grid-margin:       20px !default;
+
+// Helper variable that combines column width and margin.
 $grid-column:       $grid-column-width + $grid-margin;
 
+// Calculate the width of a container spanning $n number of columns.
 @function span($n) {
     @return $n * $grid-column-width + ($n - 1) * $grid-margin;
 }
+
+// Calculate the total width of $n number of columns, including the trailing
+// margin.
 @function columns($n) {
     @return $grid-column * $n;
 }
 
+// A column is floated, fixed-width container that you can use to manage
+// horizontal layout. Columns stack up horizontally as long as there is
+// space left in the parent element.
+//
+// Columns are assumend to live in an element that mixes in `container`,
+// so it correctly clears its floating child elements.
+//
+// Columns are spaced apart with `$grid-margin`, unless you tell it
+// not to using `$with_margin`. You can also use `rcolumn`, which puts
+// the margin to the left, rather that the right.
 @mixin column($span, $with_margin: true) {
     @include float;
     width: span($span);
@@ -17,29 +36,47 @@ $grid-column:       $grid-column-width + $grid-margin;
     }
 }
 
+// Make an element correctly clear its column child elements. Simpel alias for
+// clearfix.
 @mixin container {
     @include clearfix;
     position: relative;
 }
 
+// Reverse container, similar to `container`. This container assumes to contain
+// elements mixin in `rcolumn`.
+//
+// An `rcontainer` element has negative left margin equal to the
+// `$grid-margin`, so that the left margin of the first `rcolumn` child element
+// exactly overlaps it, effectively cancelling it. This results in not having
+// to remove the right margin when using regular columns with a special `last`
+// class.
 @mixin rcontainer {
     @include container;
     margin-left: -$grid-margin;
 }
 
+// Similar to `column`, but with the margin applied to the left side, rather
+// than right. When used in combination with `rcontainer`, you no longer need
+// to worry the last column in a row having right margin, which would not fit a
+// container.
 @mixin rcolumn($span) {
     @include column($span, false);
     margin-left: $grid-margin;
 }
 
+// Apply a number of columns as padding to the left of a `column` element.
 @mixin prepend($span) {
     padding-left: span($span);
 }
 
+// Apply a number of columns as padding to the right of a `column` element.
 @mixin append($span) {
     padding-right: span($span);
 }
 
+// Use negative margins to visually push a column to the right an amount of
+// columns.
 @mixin push($span) {
     margin {
         left: columns($span);
@@ -47,6 +84,13 @@ $grid-column:       $grid-column-width + $grid-margin;
     }
 }
 
+// Use negative margins to visually shift a column to the left.
+//
+// When this column is the last column in the source, but you want to pull it
+// to the left, another column will become the column. If you have removed the
+// right margin from that column, we need to compensate that amount of margin
+// on the armount we pull to the left. You can cancel this behaviour by passing
+// `false` for `$last`.
 @mixin pull($span, $last: true) {
     @if $last {
         margin-left: columns(-$span) + $grid-margin;

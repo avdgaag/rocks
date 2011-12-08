@@ -1,8 +1,22 @@
+// Consistent floats: float to the left and use `display: inline` to make it
+// more likely to work correctly in IE.
 @mixin float($dir: 'left') {
     float: $dir;
     display: inline;
 }
 
+// Outdent a child element from the current element.
+//
+// The element matched by `selector` will receive a negative margin to the
+// left, pulling it out of the container element this mixin applies to.  You
+// can optionally add the same amount of padding to the container, so all the
+// container's contents get indented, and the selected child element sits in
+// the created whitespace.
+//
+// $selector is the selecter the outdenting styles apply to
+// $amount is the width to outdent
+// $dir is the direction of the outdent, defaulting to left
+// $with-padding controls whether the same $amount of padding is applied
 @mixin outdent($selector, $amount, $dir: 'left', $with-padding: true) {
     @if $with-padding {
         padding-#{$dir}: $amount;
@@ -17,6 +31,10 @@
     }
 }
 
+// Mimic the HTML align attribute, but better
+//
+// This floats an element in direction given by `$dir`, and applies some
+// whitespace around it.
 @mixin align($dir: 'left', $v: $line, $h: $grid-margin, $mirror: false) {
     @include float('left');
     margin-top: $v;
@@ -33,6 +51,7 @@
     }
 }
 
+// Let an element automatically clear its containing floats.
 @mixin clearfix {
     @extend .clearfix;
 }
@@ -49,6 +68,7 @@
     }
 }
 
+// Apply negative margin and equal, opposing padding, to the left of an element.
 @mixin outset-left($gutter: $grid-margin, $with-padding) {
     margin-left: -$gutter;
     @if $with-padding {
@@ -56,6 +76,7 @@
     }
 }
 
+// Apply negative margin and equal, opposing padding, to the right of an element.
 @mixin outset-right($gutter: $grid-margin, $with-padding) {
     margin-right: -$gutter;
     @if $with-padding {
@@ -63,11 +84,15 @@
     }
 }
 
+// Apply negative margin and equal, opposing padding, to the right and left of
+// an element. Useful for horizontally breaking out of a container element.
 @mixin outset($gutter: $grid-margin, $with-padding: true) {
     @include outset-left($gutter, $with-padding);
     @include outset-right($gutter, $with-padding);
 }
 
+// Apply consistent whitespace above an element, either in number of lines
+// or as a fixed amount.
 @mixin leading($amount: $line) {
     @if unitless($amount) {
         margin-top: lines($amount);
@@ -76,6 +101,8 @@
     }
 }
 
+// Apply consistent whitespace below an element, either in number of lines or
+// as a fixed amount.
 @mixin trailing($amount: $line) {
     @if unitless($amount) {
         margin-bottom: lines($amount);
@@ -84,11 +111,17 @@
     }
 }
 
+// Apply default trailing and leading whitespace around elements. Assumed to be
+// applied to all non-generic block-level elements (so p, h1 and table but not
+// div or section)
 @mixin surrounding-lines {
     @include leading;
     @include trailing;
 }
 
+// Vertically outset an element by applying negative margin and equal, opposing
+// padding to the top. You can optionally remove some of the padding to allow
+// room for a border.
 @mixin voutset-top($amount, $border: 0) {
     @if unitless($amount) {
         $amount = lines($amount);
@@ -97,6 +130,9 @@
     padding-top: $amount - $border;
 }
 
+// Vertically outset an element by applying negative margin and equal, opposing
+// padding to the bottom. You can optionally remove some of the padding to
+// allow room for a border.
 @mixin voutset-bottom($amount, $border: 0) {
     @if unitless($amount) {
         $amount = lines($amount);
@@ -105,6 +141,11 @@
     padding-bottom: $amount - $border;
 }
 
+// Vertically outset an element by applying negative margins and equal,
+// opossing padding above and below an element.
+//
+// This is useful for having text between two paragrahps equally spaced apart,
+// but add a background or border around one element with nice padding.
 @mixin voutset($amount, $border: 0) {
     @include voutset-top($amount, $border);
     @include voutset-bottom($amount, $border);
