@@ -1,4 +1,4 @@
-== 0.0.3
+## 0.0.3
 
 * Bugfixes:
   * invalid Sass syntax
@@ -10,7 +10,7 @@
 * Added new link-colors-darken mixin
 * Import reset file into manifest file
 
-== 0.0.2
+## 0.0.2
 
 * Added `trailing`, `leading`, `voutset` mixins
 * Added `container`
@@ -18,6 +18,6 @@
 * Added inline docs
 * Made `clearfix` mixin extend `.clearfix`, rather than other way around
 
-== 0.0.1
+## 0.0.1
 
 * Inital release
