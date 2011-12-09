@@ -1,3 +1,15 @@
+== 0.0.3
+
+* Bugfixes:
+  * invalid Sass syntax
+  * invalid gemspec
+  * always specify defaults for optional arguments
+  * Do not use strings for float values
+* Target selector for block links is now optional
+* prepend mixin now uses columns function rather than span
+* Added new link-colors-darken mixin
+* Import reset file into manifest file
+
 == 0.0.2
 
 * Added `trailing`, `leading`, `voutset` mixins
