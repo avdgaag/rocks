@@ -24,6 +24,9 @@ projects like [Blueprint][], [Compass][] and many others.
 Include Rocks in your Gemfile:
 
     gem 'rocks'
+
+Let [Bundler][] install it:
+
 	$ bundle install
 
 Make sure your `application.css` file is compiled by Sass by renaming it to
@@ -182,7 +185,7 @@ See CHANGELOG.md for a full of changes.
 
 # Credits
 
-**Author**: Arjan van der Gaag
+**Author**: Arjan van der Gaag  
 **URL**: http://arjanvandergaag.nl
 
 # License
@@ -193,3 +196,4 @@ See the LICENSE file for more information.
 [Compass]: http://compass-style.org
 [Blueprint]: http://blueprintcss.org
 [Bourbon]: https://github.com/thoughbot/bourbon
+[Bundler]: http://gembundler.com
