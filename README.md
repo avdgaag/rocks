@@ -46,6 +46,20 @@ Unsupported so far. I may write a simple installer script one day that
 automatically copies all the stylesheets into a directory of your choosing. For
 now, you'll have to do that manually.
 
+If you are using Sass directly, you could try to just add the Rocks gem to
+`load_path`, using something like the following:
+
+```ruby
+Sass::Engine.new(my_stylesheet,
+  :syntax => :scss,
+  :load_path => [
+    File.join(`bundle show rocks`, 'app', 'assets', 'stylesheets')
+  ]
+ )
+```
+
+This would allow you to `@import 'rocks';` in the `my_stylesheet` file.
+
 # Contents
 
 ## Grid
