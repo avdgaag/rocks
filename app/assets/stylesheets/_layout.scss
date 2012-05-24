@@ -53,10 +53,6 @@
 
 // Let an element automatically clear its containing floats.
 @mixin clearfix {
-    @extend .clearfix;
-}
-
-.clearfix {
     zoom: 1;
     &:after {
         visibility: hidden;
@@ -66,6 +62,10 @@
         clear: both;
         height: 0;
     }
+}
+
+.clearfix {
+    @include clearfix;
 }
 
 // Apply negative margin and equal, opposing padding, to the left of an element.
