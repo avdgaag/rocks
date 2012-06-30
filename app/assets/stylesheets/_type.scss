@@ -13,6 +13,77 @@ $color-text: #444 !default;
     @return $line * $n;
 }
 
+// Apply vertical rhtythm to an element, setting top and bottom margins, padding and borders.
+//
+// You can either specify a single value to use for both the top and bottom, or specify two values:
+//
+//    @include rhythm($margin: 2);    // margin-top: lines(2); margin-bottom: lines(2);
+//    @include rhythm($margin: 2 0);  // margin-top: lines(2); margin-bottom: lines(0);
+//
+// You can also specify just the top or bottom part:
+//
+//    @include rhythm($padding-top: 2); // padding-top: lines(2);
+//
+// Margin and padding values are expressed in a number of lines using the `lines` function. Border values
+// will only set the width and should have unit, like `px`:
+//
+//    @include rhythm($border: 1px 3px); // border-top-width: 1px; border-bottom-width: 3px;
+//
+// By default, if you specify padding AND a border, the border width will be subtracted from the padding:
+//
+//    @include rhythm($padding: 2, $border: 2px 4px);
+//    // padding-top: lines(2) - 2px;
+//    // padding-bottom: lines(2) - 4px;
+//    // border-top-width: 2px;
+//    // border-bottom-width: 2px;
+//
+// You can disable this behaviour by specifying `$compensate-padding: false`.
+@mixin rhythm($margin: false, $padding: false, $border: false, $margin-top: false, $margin-bottom: false, $padding-top: false, $padding-bottom: false, $border-top: false, $border-bottom: false, $compensate-padding: true) {
+    $margin-top:      if($margin, nth($margin, 1), $margin-top);
+    $margin-bottom:   if($margin, if(length($margin) == 2, nth($margin, 2), $margin), $margin-bottom);
+    $padding-top:     if($padding, nth($padding, 1), $padding-top);
+    $padding-bottom:  if($padding, if(length($padding) == 2, nth($padding, 2), $padding), $padding-bottom);
+    $border-top:      if($border, nth($border, 1), $border-top);
+    $border-bottom:   if($border, if(length($border) == 2, nth($border, 2), $border), $border-bottom);
+
+    @if $border-top && unitless($border-top) {
+        @warn 'You should provide border values with units (e.g. px)';
+    }
+    @if $padding && ($padding-top || $padding-bottom) {
+        @warn 'You should specify only $padding or $padding-(top|bottom)';
+    }
+    @if $margin && ($margin-top || $margin-bottom) {
+        @warn 'You should specify only $margin or $margin-(top|bottom)';
+    }
+
+    @if $margin-top {
+        margin-top: lines($margin-top);
+    }
+    @if $margin-bottom {
+        margin-bottom: lines($margin-bottom);
+    }
+    @if $border-top {
+        border-top-width: $border-top;
+    }
+    @if $border-bottom {
+        border-bottom-width: $border-bottom;
+    }
+    @if $padding-top {
+        @if $border-top && $compensate-padding {
+            padding-top: lines($padding-top) - $border-top;
+        } @else {
+            padding-top: lines($padding-top);
+        }
+    }
+    @if($padding-bottom) {
+        @if $border-bottom && $compensate-padding {
+            padding-bottom: lines($padding-bottom) - $border-bottom;
+        } @else {
+            padding-bottom: lines($padding-bottom);
+        }
+    }
+}
+
 // Use a background image to give an element an icon.
 //
 // $img is the image source.
