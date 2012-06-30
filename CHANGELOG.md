@@ -1,3 +1,9 @@
+## 0.0.4
+
+* Removed use of @extend in a @mixin (deprecated in Sass)
+* Added new rhythm mixin for dealing with vertical rhythm
+* Added note in docs on adding Rocks to the Sass load path
+
 ## 0.0.3
 
 * Bugfixes:

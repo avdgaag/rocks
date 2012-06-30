@@ -187,6 +187,9 @@ Defines the following functions:
 
 It defines the following mixins:
 
+* `rhythm(...)`: apply various aspects of vertical rhythm in one go,
+  using a combination of arguments. See the inline docs for more
+  information.
 * `text-icon($img, $padding: $grid-margin, $x: 0, $y:0)`: give an element an
   icon by setting an image to the background and applying some padding.
 * `text-replace($img, $x: 0, $y: 0, $w: false, $h: false)`: replace an
