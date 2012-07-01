@@ -46,13 +46,13 @@ $color-text: #444 !default;
     $border-top:      if($border, nth($border, 1), $border-top);
     $border-bottom:   if($border, if(length($border) == 2, nth($border, 2), $border), $border-bottom);
 
-    @if $border-top && unitless($border-top) {
+    @if $border-top and unitless($border-top) {
         @warn 'You should provide border values with units (e.g. px)';
     }
-    @if $padding && ($padding-top || $padding-bottom) {
+    @if $padding and ($padding-top or $padding-bottom) {
         @warn 'You should specify only $padding or $padding-(top|bottom)';
     }
-    @if $margin && ($margin-top || $margin-bottom) {
+    @if $margin and ($margin-top or $margin-bottom) {
         @warn 'You should specify only $margin or $margin-(top|bottom)';
     }
 
@@ -69,14 +69,14 @@ $color-text: #444 !default;
         border-bottom-width: $border-bottom;
     }
     @if $padding-top {
-        @if $border-top && $compensate-padding {
+        @if $border-top and $compensate-padding {
             padding-top: lines($padding-top) - $border-top;
         } @else {
             padding-top: lines($padding-top);
         }
     }
     @if($padding-bottom) {
-        @if $border-bottom && $compensate-padding {
+        @if $border-bottom and $compensate-padding {
             padding-bottom: lines($padding-bottom) - $border-bottom;
         } @else {
             padding-bottom: lines($padding-bottom);
