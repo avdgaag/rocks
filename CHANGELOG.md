@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Bugfix: wrong boolean operators
+
 ## 0.0.4
 
 * Removed use of @extend in a @mixin (deprecated in Sass)
