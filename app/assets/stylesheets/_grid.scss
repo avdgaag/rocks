@@ -72,7 +72,7 @@ $grid-column: $grid-column-width + $grid-margin;
 
 // Apply a number of columns as padding to the right of a `column` element.
 @mixin append($span) {
-    padding-right: span($span);
+    padding-right: columns($span);
 }
 
 // Use negative margins to visually push a column to the right an amount of
