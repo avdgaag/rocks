@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Rocks by avdgaag</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Rocks</h1>
+          <h2>This is a tiny library of mixins and styles for developing large-ish stylesheets with Sass</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/avdgaag/rocks/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/avdgaag/rocks/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/avdgaag/rocks" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>Rocks</h1>
+
+<p>This is a tiny library of mixins and styles for developing large-ish
+stylesheets with <a href="http://sass-lang.com">Sass</a>.</p>
+
+<p>I extracted these styles from a bunch of larger-than-average projects I have
+worked on, as I found I was repeating myself over and over again. There is
+nothing groundbreaking in here, just a useful collection of snippets to build
+your own stylesheets with.</p>
+
+<p>This library does not aim to help you write CSS, but better stylesheets. It
+provides re-usable components and patterns to help you simplify styling common
+objects on your page.</p>
+
+<p>The contents of this project are in partly homegrown and partly borrowed from
+projects like <a href="http://blueprintcss.org">Blueprint</a>, <a href="http://compass-style.org">Compass</a> and many others.</p>
+
+<p><strong>Note</strong>: this is very much a work in progress. Mind the gap.</p>
+
+<h1>Installation</h1>
+
+<h2>Installation for Rails 3.1+ projects</h2>
+
+<p>Include Rocks in your Gemfile:</p>
+
+<pre><code>gem 'rocks'
+</code></pre>
+
+<p>Let <a href="http://gembundler.com">Bundler</a> install it:</p>
+
+<pre><code>$ bundle install
+</code></pre>
+
+<p>Make sure your <code>application.css</code> file is compiled by Sass by renaming it to
+<code>application.css.scss</code>. Import the Rocks stylesheets:</p>
+
+<pre><code>@import "rocks";
+</code></pre>
+
+<p>Add your own styles and imports below that.</p>
+
+<p><strong>Note</strong> if you also include <a href="https://github.com/thoughbot/bourbon">Bourbon</a> in your project, make sure put
+<code>@import "bourbon";</code> <em>before</em> <code>@import "rocks";</code>, as per its installation
+instructions.</p>
+
+<h2>Installation for non-Rails 3.1+ projects</h2>
+
+<p>Unsupported so far. I may write a simple installer script one day that
+automatically copies all the stylesheets into a directory of your choosing. For
+now, you'll have to do that manually.</p>
+
+<p>If you are using Sass directly, you could try to just add the Rocks gem to
+<code>load_path</code>, using something like the following:</p>
+
+<div class="highlight"><pre><span class="no">Sass</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">my_stylesheet</span><span class="p">,</span>
+  <span class="ss">:syntax</span> <span class="o">=&gt;</span> <span class="ss">:scss</span><span class="p">,</span>
+  <span class="ss">:load_path</span> <span class="o">=&gt;</span> <span class="o">[</span>
+    <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sb">`bundle show rocks`</span><span class="p">,</span> <span class="s1">'app'</span><span class="p">,</span> <span class="s1">'assets'</span><span class="p">,</span> <span class="s1">'stylesheets'</span><span class="p">)</span>
+  <span class="o">]</span>
+ <span class="p">)</span>
+</pre></div>
+
+<p>This would allow you to <code>@import 'rocks';</code> in the <code>my_stylesheet</code> file.</p>
+
+<h1>Contents</h1>
+
+<h2>Grid</h2>
+
+<p>Contains functions and mixins for working with a grid-based layout. The grid is
+based on variables <code>$grid-column-width</code> and <code>$grid-margin</code>. It provides the
+following functions:</p>
+
+<ul>
+<li>
+<code>span(n)</code>: get a width value for <code>n</code> number of columns.</li>
+<li>
+<code>columns(n)</code>: get the total width of a number of columns.</li>
+</ul><p>The difference between <code>span</code> and <code>columns</code> is inclusion of <code>$grid-margin</code> at
+the end.</p>
+
+<p>It contains the following mixins:</p>
+
+<ul>
+<li>
+<code>column($span, $with_margin: true)</code>: make an element a column, spanning
+<code>$span</code> number of columns.</li>
+<li>
+<code>container</code>: container for <code>column</code> elements. Simply a relatively positioned
+wrapped with clearfix applied.</li>
+<li>
+<code>rcontainer</code>: container for <code>rcolumn</code> elements. Contains negative left
+margin, that counters the left margin of the first <code>rcolumn</code> it contains.</li>
+<li>
+<code>rcolumn($span)</code>: same as <code>column</code> but with margin applied to the left, so
+you don't need to remove margin from the last column in a group.</li>
+<li>
+<code>prepend($span)</code>: pad an element with <code>$span</code> columns to the left.</li>
+<li>
+<code>append($span)</code>: pad an element with <code>$span</code> columns to the right.</li>
+<li>
+<code>push($span)</code>: move an element to the right over <code>$span</code> columns.</li>
+<li>
+<code>pull($span)</code>: move an element to the left over <code>$span</code> columns.</li>
+</ul><h2>Layout</h2>
+
+<p>Contains simple layout helper mixins:</p>
+
+<ul>
+<li>
+<code>float($dir: 'left')</code>: float en element left or right, including the
+<code>display: inline</code> so often needed for IE.</li>
+<li>
+<code>outdent($selector, $amount, $dir: 'left', $with-padding)</code>: make a child
+element outdented. Useful for a story with some text and an image, where all
+the text should be beside the image.</li>
+<li>
+<code>align($dir: 'left', $v: $line, $h: $grid-margin, $mirror: false)</code>: float an
+element with margins. Useful for left- or right floating images.</li>
+<li>
+<code>clearfix</code>: clears floated elements inside.</li>
+<li>
+<code>outset-left($gutter: $grid-margin, $with-padding)</code>: create an outdent to the
+left, using a negative margin and opposing padding.</li>
+<li>
+<code>outset-right($gutter: $grid-margin, $with-padding)</code>: create an outdent to
+the right, using a negative margin and opposing padding.</li>
+<li>
+<code>outset($gutter: $grid-marign, $with-padding: true)</code>: outdent to both the
+left and right.</li>
+<li>
+<code>leading($amount: $line)</code>: add whitespace before an element.</li>
+<li>
+<code>trailing($amount: $line)</code>: add whitespace after an element.</li>
+<li>
+<code>surrounding-lines</code>: adds a single line-height whitespace before and after
+the element.</li>
+<li>
+<code>voutset-top($amount, $border: 0)</code>: vertically outset an element, adding
+negative margin and positive padding to the top.</li>
+<li>
+<code>voutset-bottom($amount, $border: 0)</code>: vertically outset an element, adding
+negative margin and positive padding to the bottom.</li>
+<li>
+<code>voutset($amount, $border: 0)</code>: vertically outset an element by applying
+negative marings and countering paddings top top and bottom.</li>
+</ul><p>All of <code>leading</code>, <code>trailing</code>, <code>voutset-top</code> and <code>voutset-bottom</code> can take both
+pixel values as arguments, or a unit-less number. When given a unit-less
+number, it will be fed to the <code>lines</code> function.</p>
+
+<p>When using any of the <code>voutset</code> mixins, you can add an optional <code>$border</code>
+argument to reduce the amount of padding that is applied, leaving room for a
+border on element while preserving vertical rhythm.</p>
+
+<p>It also contains a plain class <code>.clearfix</code> that you can use in your HTML. It is
+meant, however, to be used with <code>@extend</code>. When your stylesheet needs a lot of
+clearfixes, the end result will contain <em>a lot</em> of duplicated code. Using
+<code>@extend .clearfix</code> you can define the class once, and simply apply many
+selectors to it.</p>
+
+<h2>Links</h2>
+
+<p>Provides mixins for common link behaviours:</p>
+
+<ul>
+<li>
+<code>link-hover</code>: hide underline on normal links, show it on hover and focus.</li>
+<li>
+<code>link-colors($link, $visited, $hover, $active)</code>: set all colors at once.</li>
+<li>
+<code>link-colors-lighten($color)</code>: use <code>link-colors</code> to use a single color for
+all links, but lighten the hover, focus and active styles slightly using the
+<code>lighten</code> function.</li>
+<li>
+<code>link-colors-darken($color)</code>: like <code>link-colors-lighten</code> but using the
+<code>darken</code> function instead of <code>lighten</code>.</li>
+<li>
+<code>link-press</code>: make a link 'pressable' by offsetting it 1px in its active
+state.</li>
+<li>
+<code>link-unstyled($color: $color-text)</code>: make a link appear as regular text.</li>
+<li>
+<code>link-block($target: .target)</code> make a link work as a block, wrapping multiple
+elements that will be clickable. The (optional) target selector applies
+styles to a child element that should <em>appear</em> as a link, by extending
+<code>.block-link-target</code> -- which you should define yourself.</li>
+</ul><h2>Lists</h2>
+
+<p>Provides basic building blocks for styling lists:</p>
+
+<ul>
+<li>
+<code>list-no-bullets</code>: removes list bullets.</li>
+<li>
+<code>list-plain</code>: removes bullets and spacing.</li>
+<li>
+<code>list-inline</code>: removes bullets and shows elements inline.</li>
+<li>
+<code>list-horizontal($margin: $grid-margin, $dir: 'left')</code>: floats all chilren to
+a horizontal list.</li>
+<li>
+<code>list-dl-table($width, $margin: $grid-margin)</code>: show a term and its
+definition (dt and dd) on a single line.</li>
+<li>
+<code>list-image-bullets($img, $padding: $grid-margin, $x: 0, $y: 0)</code>: use an
+image as list bullet using the background-image technique.</li>
+</ul><h2>Reset</h2>
+
+<p>Provides a single <code>reset</code> mixin that reset all styles. You probably want to mix
+this into your <code>body</code> selector, but you could also use it for a local reset in
+a specific element.</p>
+
+<h2>Type</h2>
+
+<p>Defines the following variables:</p>
+
+<ul>
+<li>
+<code>$line</code>: the base line height of your site. Used in many different places for
+marigns, paddings and heights to achieve a sensible vertical rhythm. Defaults
+to <code>20px</code>.</li>
+<li>
+<code>$size-text</code>: the default text size. Defaults to <code>14px</code>.</li>
+<li>
+<code>$color-text</code>: the default text color. Defaults to <code>#444</code>.</li>
+</ul><p>Defines the following functions:</p>
+
+<ul>
+<li>
+<code>lines($n)</code>: returns a mutliple of <code>$lines</code>.</li>
+</ul><p>It defines the following mixins:</p>
+
+<ul>
+<li>
+<code>rhythm(...)</code>: apply various aspects of vertical rhythm in one go,
+using a combination of arguments. See the inline docs for more
+information.</li>
+<li>
+<code>text-icon($img, $padding: $grid-margin, $x: 0, $y:0)</code>: give an element an
+icon by setting an image to the background and applying some padding.</li>
+<li>
+<code>text-replace($img, $x: 0, $y: 0, $w: false, $h: false)</code>: replace an
+element's text with an image by setting it to the background. You can
+optionally specify width, height and background positioning.</li>
+</ul><h1>History</h1>
+
+<p>See CHANGELOG.md for a full of changes.</p>
+
+<h1>Credits</h1>
+
+<p><strong>Author</strong>: Arjan van der Gaag<br><strong>URL</strong>: <a href="http://arjanvandergaag.nl">http://arjanvandergaag.nl</a></p>
+
+<h1>License</h1>
+
+<p>See the LICENSE file for more information.</p>
+        </section>
+
+        <footer>
+          Rocks is maintained by <a href="https://github.com/avdgaag">avdgaag</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+                  <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-20357800-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+      </div>
+    </div>
+  </body>
+</html>
