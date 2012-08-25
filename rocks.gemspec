@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version           = Rocks::VERSION
   s.authors           = ['Arjan van der Gaag']
   s.email             = ['arjan@arjanvandergaag.nl']
-  s.homepage          = 'https://github.com/avdgaag/rocks'
+  s.homepage          = 'http://avdgaag.github.com/rocks'
   s.summary           = 'Sass mixins using SCSS syntax that go one step further than Bourbon'
   s.description       = <<-DESC
 Rocks provides a set of mixins and default styles that you can use to develop
